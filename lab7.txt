@@ -1,0 +1,518 @@
+01)
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+    int str[100];
+    printf("insira a frase: ");
+    fgets(str, 100, stdin);
+
+    printf("essa eh a frase: %s", str);
+
+    return 0;
+}
+
+02)
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+    int i, contador = 0;
+    int str[100];
+    printf("insira a frase: ");
+    fgets(str, 100, stdin);
+
+    printf("essa eh a frase: %s", str);
+
+    for(i = 0; i < 100; i++ ){
+        if (str[i] == 1){
+            contador=+1;
+        }
+    }
+    printf("Esse eh o tanto de 1's que tem: %d", contador);
+
+    return 0;
+}
+
+03)
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(){
+    char palavra[100];
+    int i;
+
+    printf("Insira a palavra desejada: ");
+    fgets(palavra, 100, stdin);
+
+
+
+    for (i = 0; palavra[i] != '\0'; i++)
+    {
+    }
+
+
+    for(;i >= 0; i--)
+    {
+        printf("%c", palavra[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+
+04)
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+  char str[100], c;
+  int i, count = 0;
+
+  fgets(str, 100, stdin);
+  scanf("%c", &c);
+  for (i = 0; str[i] != '\0'; i++)
+  {
+    if (str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u')
+    {
+      str[i] = c;
+      count++;
+    }
+  }
+  printf("A string tem %d vogais\n", count);
+  printf("%s", str);
+  
+  return 0;
+}
+
+05)
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+  char str[100];
+  int i;
+
+  fgets(str, 100, stdin);
+  for (i = 0; str[i] != '\0'; i++)
+  {
+    if (str[i] >= 'A' && str[i] <= 'Z')
+    {
+      str[i] += 32;
+    }
+  }
+  printf("%s", str);
+  
+  return 0;
+}
+
+06)
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+  char str[100];
+  int i;
+
+  fgets(str, 100, stdin);
+  for (i = 0; str[i] != '\0'; i++)
+  {
+    if (str[i] >= 'a' && str[i] <= 'z')
+    {
+      str[i] -= 32;
+    }
+  }
+  printf("%s", str);
+
+  return 0;
+}
+
+07)
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+  char str[100];
+  int i, j;
+
+  fgets(str, 100, stdin);
+  for (i = 0, j = 0; str[i] != '\0'; i++)
+  {
+    if (str[i] != ' ')
+    {
+      str[j] = str[i];
+      j++;
+    }
+  }
+  str[j] = '\0';
+  printf("%s", str);
+
+  return 0;
+}
+
+08)
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+  char str[100], l1, l2;
+  int i;
+
+  fgets(str, 100, stdin);
+  scanf("%c %c", &l1, &l2);
+  for (i = 0; str[i] != '\0'; i++)
+  {
+    if (str[i] == l1)
+    {
+      str[i] = l2;
+    }
+  }
+  printf("%s", str);
+
+  return 0;
+}
+
+09)
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+  char str[5][100];
+  float cons[5], maior = 0;
+  int i, j, pos;
+
+  for (i = 0; i < 5; i++)
+  {
+    printf("Digite o modelo do carro %d:\n", i + 1);
+    fgets(str[i], 100, stdin);
+    str[i][strlen(str[i]) - 1] = '\0';
+
+    printf("Digite o consumo do carro %d:\n", i + 1);
+    scanf("%f", &cons[i]);    
+    printf("\n");
+    getchar();
+  }
+
+  for (i = 0; i < 5; i++)
+  {
+    if (cons[i] > maior)
+    {
+      maior = cons[i];
+      pos = i;
+    }
+  }
+  printf("O carro mais economico eh o %s\n", str[pos]);
+
+  for (i = 0; i < 5; i++)
+  {
+    printf("O carro %s consome %.2f litros para percorrer 1000km\n", str[i], 1000 / cons[i]);
+  }
+
+  return 0;
+}
+
+10)
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+  char nome[100];
+  float valor, desconto, valor_a_vista;
+
+  fgets(nome, 100, stdin);
+  scanf("%f", &valor);
+  desconto = valor * 0.1;
+  valor_a_vista = valor - desconto;
+  printf("\nNome: %s\n", nome);
+  printf("Valor total: %.2f\n", valor);
+  printf("Desconto: %.2f\n", desconto);
+  printf("Valor a vista: %.2f\n", valor_a_vista);
+
+  return 0;
+}
+
+11)
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+  char str[100];
+  int i, j;
+
+  fgets(str, 100, stdin);
+  scanf("%d %d", &i, &j);
+  for (; i <= j; i++)
+  {
+    printf("%c", str[i]);
+  }
+  printf("\n");
+  
+  return 0;
+}
+
+12)
+#include <stdio.h>
+
+int main()
+{
+  char str[100];
+  int i;
+
+  fgets(str, 100, stdin);
+  for (i = 0; str[i] != '\0'; i++)
+  {
+    if (str[i] >= 'A' && str[i] <= 'Z')
+    {
+      str[i] = (str[i] - 'A' + 3) % 26 + 'A';
+    }
+    else if (str[i] >= 'a' && str[i] <= 'z')
+    {
+      str[i] = (str[i] - 'a' + 3) % 26 + 'a';
+    }
+  }
+  printf("%s", str);
+
+  return 0;
+}
+
+13)
+#include <stdio.h>
+
+int main (){
+  char str[100], str_without_special_characters[100];
+  int i, j, is_palindrome = 1;
+
+  fgets(str, 100, stdin);
+
+  for (i = 0; str[i] != '\0'; i++) {}
+
+  for (i--, j = 0; i >= 0; i--) {
+    if ((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z')) {
+      str_without_special_characters[j] = str[i];
+      j++;
+    }
+  }
+
+  for (i = 0; i < j; i++) {
+    if (
+      (str_without_special_characters[i] != str_without_special_characters[j - i - 1])
+      && (str_without_special_characters[i] != str_without_special_characters[j - i - 1] + 32)
+      && (str_without_special_characters[i] != str_without_special_characters[j - i - 1] - 32)
+      ) {
+      is_palindrome = 0;
+      break;
+    }
+  }
+
+  if (is_palindrome) {
+    printf("A string e um palindromo\n");
+  } else {
+    printf("A string nao e um palindromo\n");
+  }
+
+  return 0;
+}
+
+14)
+#include <stdio.h>
+
+int main()
+{
+  char str1[100], str2[100];
+  int i, j, n;
+
+  fgets(str1, 100, stdin);
+  fgets(str2, 100, stdin);
+  scanf("%d", &n);
+  for (i = 0; str1[i] != '\0'; i++)
+  {
+  }
+  for (j = 0; j < n; j++)
+  {
+    str1[i + j] = str2[j];
+  }
+  str1[i + j] = '\0';
+  printf("%s", str1);
+
+  return 0;
+}
+
+15)
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(){
+    char stg[100], stg2[100], stgA[20], x, l, sub;
+    int c = 0, r = 0, i = 0, t = 0, y = 0;
+
+    do{
+
+        printf("Escolha uma opcao:\n");
+        printf("Digite A - Ler uma string S1 (tamanho maximo 20 caracteres)\n");
+        printf("Digite B - Imprimir o tamanho da string S1\n");
+        printf("Digite C - Comparar a string S1 com uma nova string S2 fornecida pelo usuario e imprimir o rado da comparacao\n");
+        printf("Digite D - Concatenar a string S1 com uma nova string S2 e imprimir na tela o resultado da concatenacao\n");
+        printf("Digite E - Imprimir a string S1 de forma reversa\n");
+        printf("Digite F - Contar quantas vezes um dado caractere aparece na string S1. Esse caractere desse ser informado pelo usuario\n");
+        printf("Digite G - Substituir a primeira ocorrencia do caractere C1 da string S1 pelo caractere C2. Os caracteres C1 e C2 serao lidos pelo usuario\n");
+        printf("Digite H - Verificar se uma string S2 eh substring de S1. A string S2 deve ser informada pelo usuario\n");
+        printf("Digite I - Retornar uma substring da string S1. Para isso o usuario deve informar a partir de qual posicao deve ser criada a substring e qual eh o tamanho da substring.\n\n");
+        printf("Opcao: \n");
+        
+        scanf("%c", &x);
+    } 
+    while (x < 65 && x > 90);
+    
+    fflush(stdin);
+
+    if (x == 'a' || x == 'A'){
+        fflush(stdin);
+        printf("Digite uma frase:\n");
+        scanf("%20[^\n]", stgA);
+
+        printf("A frase digitada foi:\n%s\n", stgA);
+    
+    return 0;
+    }
+
+    printf("Digite um frase:\n");
+    scanf("%100[^\n]", stg);
+
+    y = strlen(stg);
+
+    if (x == 'b' || x == 'B'){
+        printf("O tamanho da string eh de: %d\n", y);
+    } 
+
+    else if (x == 'c' || x == 'C'){
+        fflush(stdin);
+        printf("Digite uma frase para comparacao com a primeira digitada:\n");
+        scanf("%100[^\n]", stg2);
+
+        printf("O resultado da comparacao eh: %d\n", strcmp(stg, stg2));
+    }
+
+    else if (x == 'd' || x == 'D'){
+        fflush(stdin);
+        printf("Digite uma frase para concatenar na primeira digitada:\n");
+        scanf("%100[^\n]", stg2);
+
+        printf("%s\n", strcat(stg, stg2));
+    }
+
+    else if (x == 'e' || x == 'E'){
+        fflush(stdin);
+        printf("A frase ao inverso eh: \n");
+        for (c = strlen(stg); c > -1; c--){
+            printf("%c", stg[c]);
+        }
+    }
+
+    else if (x == 'f' || x == 'F'){
+        fflush(stdin);
+        printf("Digite o caracter que voce deseja contar:\n");
+        scanf("%c", &l);
+        for (c = 0; c < 100; c++){
+            if (stg[c] == l){
+                r++;
+            }
+        }
+    printf("O caracter %c aparece %d vez(es) nessa frase\n", l, r);
+    }
+    
+    else if (x == 'g' || x == 'G'){
+        fflush(stdin);
+        printf("Digite o caracter que voce deseja mudar:\n");
+        scanf("%c", &l);
+        fflush(stdin);
+        printf("Digite um caracter para substitui-lo:\n");
+        scanf("%c", &sub);
+        for (c = 0; c < 100; c++){
+            if (stg[c] == l){
+                stg[c] = sub;
+            }
+        }
+    printf("%s", stg);
+    }
+
+    else if (x == 'h' || x == 'H'){
+        fflush(stdin);
+        printf("Digite uma frase para saber se eh subfrase da primeira frase digitada:\n");
+        scanf("%100[^\n]", stg2);
+        r = strstr(stg, stg2);
+        if(r){
+            printf("Eh subfrase\n");
+        }
+        else{
+            printf("A segunda frase nao eh subfrase da primeira digitada\n");
+        }
+    }
+
+    else if (x == 'i' || x == 'I'){
+        fflush(stdin);
+        printf("Digite uma posicao inicial da subfrase:\n");
+        scanf("%d", &i);
+        fflush(stdin);
+        printf("Digite o tamanho da frase:\n");
+        scanf("%d", &t);
+        for (c = i; c < (i + t); c++){
+            printf("%c", stg[c]);
+        }
+    }
+
+return 0;
+}
+
+16)
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(){
+    char stg[1500];
+    int i = 0, j = 0, p, mx = 0;
+
+    printf("Digite o numero sugerido:\n");
+    fflush(stdin);
+    fgets(stg, 1500, stdin);
+
+    for (i = 0; stg[i + 4] != '\0' && stg[i + 4] != '\n'; i++){
+        p = 1;
+        for (j = i; j < i + 5; j++){
+            p = p * (stg[j] - 48);
+        }
+        if (p > mx){
+            mx = p;
+        }
+    }
+    fflush(stdin);
+    printf("O maior produto dessa sequencia de numeros eh: %d\n", mx);
+
+
+return 0;
+}
