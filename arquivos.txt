@@ -1,0 +1,218 @@
+Arquivos
+5)
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+  char filename[100], character;
+  int count = 0;
+  FILE *file;
+
+  printf("Enter a filename: ");
+  scanf("%s", filename);
+  file = fopen(filename, "r");
+
+  printf("Enter a character to search for: ");
+  scanf(" %c", &character);
+
+  for (int c = fgetc(file); c != EOF; c = fgetc(file)) {
+    if (c == character) {
+      count++;
+    }
+  }
+
+  printf("The character '%c' appears %d times in the file.\n", character, count);
+  fclose(file);
+  return 0;
+}
+
+10)#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+  char filename[100];
+  printf("Informe o nome do arquivo de entrada: ");
+  scanf("%s", filename);
+  FILE *file = fopen(filename, "r");
+  if (file == NULL)
+  {
+    printf("Erro ao abrir o arquivo %s", filename);
+    return 1;
+  }
+  char city[40];
+  int population;
+  char most_populated_city[40];
+  int most_populated_city_population = 0;
+  while (fscanf(file, "%s %d", city, &population) != EOF)
+  {
+    if (population > most_populated_city_population)
+    {
+      most_populated_city_population = population;
+      strcpy(most_populated_city, city);
+    }
+  }
+  fclose(file);
+  printf("Informe o nome do arquivo de saida: ");
+  scanf("%s", filename);
+  file = fopen(filename, "w");
+  if (file == NULL)
+  {
+    printf("Erro ao abrir o arquivo %s", filename);
+    return 1;
+  }
+  fprintf(file, "%s %d", most_populated_city, most_populated_city_population);
+  fclose(file);
+  return 0;
+}
+
+15)
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+  char in_filename[100], out_filename[100];
+  int current_year;
+  FILE *in_file, *out_file;
+
+  printf("Enter the current year: ");
+  scanf("%d", &current_year);
+
+  printf("Enter the input filename: ");
+  scanf("%s", in_filename);
+  in_file = fopen(in_filename, "r");
+
+  if (in_file == NULL) {
+    printf("Could not open file %s", in_filename);
+    return 1;
+  }
+
+  printf("Enter the output filename: ");
+  scanf("%s", out_filename);
+  out_file = fopen(out_filename, "w");
+
+  char name[41];
+  int birth_year;
+  while (fscanf(in_file, "%40s %d", name, &birth_year) == 2) {
+    int age = current_year - birth_year;
+    if (age < 18) {
+      fprintf(out_file, "%s menor de idade\n", name);
+    } else if (age > 18) {
+      fprintf(out_file, "%s maior de idade\n", name);
+    } else {
+      fprintf(out_file, "%s entrando na maior idade\n", name);
+    }
+  }
+
+  fclose(in_file);
+  fclose(out_file);
+  return 0;
+}
+
+20)
+#include <stdio.h>
+
+int main(void)
+{
+  int n, i;
+  char *p, *p2;
+  FILE *arq;
+  printf("Digite o número de alunos: ");
+  scanf("%d", &n);
+  p = (char *)malloc(n * 40 * sizeof(char));
+  p2 = (char *)malloc(n * sizeof(char));
+  arq = fopen("alunos.txt", "w");
+  for (i = 0; i < n; i++)
+  {
+    printf("Digite o nome do aluno: ");
+    scanf("%s", &p[i * 40]);
+    printf("Digite a nota do aluno: ");
+    scanf("%s", &p2[i]);
+  }
+  for (i = 0; i < n; i++)
+  {
+    fprintf(arq, "%s %s", &p[i * 40], &p2[i]);
+  }
+  free(p);
+  free(p2);
+  fclose(arq);
+  return 0;
+}
+
+25)
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Contact {
+  char name[100];
+  char phone[15];
+  int birthday_day;
+  int birthday_month;
+};
+
+struct Contact contacts[100];
+int num_contacts = 0;
+
+void insert_contact() {
+  struct Contact new_contact;
+  printf("Coloque o nome: ");
+  scanf("%s", new_contact.name);
+  printf("Coloque o numero de telefone: ");
+  scanf("%s", new_contact.phone);
+  printf("Coloque a data de aniversario do contato: ");
+  scanf("%d", &new_contact.birthday_day);
+  printf("Coloque o mes de aniversario do contato: ");
+  scanf("%d", &new_contact.birthday_month);
+  contacts[num_contacts++] = new_contact;
+}
+
+void remove_contact() {
+  char name[100];
+  printf("Coloque o nome do contato para remover: ");
+  scanf("%s", name);
+  for (int i = 0; i < num_contacts; i++) {
+    if (strcmp(contacts[i].name, name) == 0) {
+      for (int j = i; j < num_contacts - 1; j++) {
+        contacts[j] = contacts[j + 1];
+      }
+      num_contacts--;
+      break;
+    }
+  }
+}
+
+void search_contact() {
+  char name[100];
+  printf("Coloque o nome do contato a ser procurado: ");
+  scanf("%s", name);
+  for (int i = 0; i < num_contacts; i++) {
+    if (strcmp(contacts[i].name, name) == 0) {
+      printf("Nome: %s\n", contacts[i].name);
+      printf("Telefone: %s\n", contacts[i].phone);
+      printf("Birthday: %d/%d\n", contacts[i].birthday_day, contacts[i].birthday_month);
+      break;
+    }
+  }
+}
+
+void list_contacts() {
+  for (int i = 0; i < num_contacts; i++) {
+    printf("Nome: %s\n", contacts[i].name);
+    printf("Telefone: %s\n", contacts[i].phone);
+    printf("Aniversario: %d/%d\n", contacts[i].birthday_day, contacts[i].birthday_month);
+  }
+}
+
+void list_contacts_by_letter() {
+  char letter;
+  printf("Coloque a letra ser procurada: ");
+  scanf(" %c", &letter);
+  for (int i = 0; i < num_contacts; i++) {
+    if (contacts[i].name[0] == letter) {
+      printf("Nome: %s\n", contacts[i].name);
+      printf("Telefone: %s\n", contacts[i].phone);
+      printf("Aniversario: %d/%d\n", contacts[i].birthday_day, contacts[i].birthday_
+}
+return 0;
+}
