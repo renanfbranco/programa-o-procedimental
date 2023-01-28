@@ -1,0 +1,323 @@
+02) 
+#include <stdio.h>
+
+int main(void) {
+    int *p, i, n;
+    printf("Digite o tamanho do vetor: ");
+    scanf("%d", &n);
+    p = (int *) malloc(n * sizeof(int));
+    for (i = 0; i < n; i++) {
+        printf("Digite um número: ");
+        scanf("%d", &p[i]);
+    }
+    for (i = 0; i < n; i++) {
+        printf("%d ", p[i]);
+    }
+    free(p);
+    return 0;
+}
+
+/4
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int fun (char *x, int N){
+    int i;
+
+    x = (char*) malloc (N);
+
+    printf("Digite uma frase:\n");
+    scanf(" %[^\n]s", x);
+
+    for(i = 0; i < N; i++){
+        if(x[i] == 'a' || x[i] == 'A' || x[i] == 'e' || x[i] == 'E' || x[i] == 'i' || x[i] == 'I' || x[i] == 'o' || x[i] == 'O' || x[i] == 'u' || x[i] == 'U' || x[i] <= '\0'){
+            x[i] = 127;
+        }
+    } 
+
+    printf("\n");
+   
+    printf("A frase sem vogais eh: %s\n", x);
+
+}
+
+int main(){
+    char *x; 
+    int N;
+
+    printf("Digite o tamanho do seu vetor:\n")/
+    scanf("%d", &N);
+
+    fun (x, N);
+
+    
+    system("pause");
+    return 0;
+}
+
+6
+#include <stdio.h>
+
+int main(void) {
+    int *p, i, n, op, pos, val;
+    printf("Digite o tamanho da memória: ");
+    scanf("%d", &n);
+    p = (int *) malloc(n * sizeof(int));
+    for (i = 0; i < n; i++) {
+        p[i] = 0;
+    }
+    do {
+        printf("1 - Inserir valor\n");
+        printf("2 - Consultar valor\n");
+        printf("3 - Sair\n");
+        printf("Digite a opção desejada: ");
+        scanf("%d", &op);
+        switch (op) {
+            case 1:
+                printf("Digite a posição: ");
+                scanf("%d", &pos);
+                printf("Digite o valor: ");
+                scanf("%d", &val);
+                p[pos] = val;
+                break;
+            case 2:
+                printf("Digite a posição: ");
+                scanf("%d", &pos);
+                printf("Valor: %d\n", p[pos]);
+                break;
+            case 3:
+                printf("Saindo...\n");
+                break;
+            default:
+                printf("Opção inválida!\n");
+        }
+    } while (op != 3);
+    free(p);
+    return 0;
+}
+
+8
+#include <stdio.h>
+
+int main(void) {
+    int *p, i, cont = 0;
+    p = (int *) calloc(1500, sizeof(int));
+    for (i = 0; i < 1500; i++) {
+        if (p[i] == 0) {
+            cont++;
+        }
+    }
+    printf("Existem %d zeros no vetor.\n", cont);
+    for (i = 0; i < 1500; i++) {
+        p[i] = i;
+    }
+    for (i = 0; i < 10; i++) {
+        printf("%d ", p[i]);
+    }
+    printf("\n");
+    for (i = 1490; i < 1500; i++) {
+        printf("%d ", p[i]);
+    }
+    printf("\n");
+    free(p);
+    return 0;
+}
+
+
+12)
+#include <stdio.h>
+#include <stdlib.h>
+
+struct produto{
+    int cod, quant;
+    char nome[50];
+    float preco;
+};
+typedef struct produto p;
+
+int main(){
+    p *x;
+    int i, N, max = 0, A, B;
+    float max1 = 0;
+    
+    printf("Digite quantos produtos voce deseja fornecer informacoes:\n");
+    scanf("%d", &N);
+
+    printf("\n");
+
+    x = (p*) malloc (sizeof(p) * N);
+
+    printf("PRODUTOS\n");
+
+    printf("\n");
+
+    for(i = 0; i < N; i++){
+        printf("Nome do produto:\n");
+        scanf(" %[^\n]s", &x[i].nome);
+        printf("Digite o codigo:\n");
+        scanf("%d", &x[i].cod);
+        printf("Digite a quantidade desse produto no estoque:\n");
+        scanf("%d", &x[i].quant);
+        printf("Digite o preco do produto:\n");
+        scanf("%f", &x[i].preco);
+        printf("\n");
+
+        if(x[i].quant > max){
+            max = x[i].quant;
+            B = i;
+        }
+
+        if(x[i].preco > max1){
+            max1 = x[i].preco;
+            A = i;
+        }
+    }
+
+    printf("O produto que possui maior preco eh o: %s\n", x[A].nome);
+
+    printf("O produto que possui a maior quantidade no estoque eh: %s\n", x[B].nome);
+    
+    
+    system("pause");
+    return 0;
+}
+
+14)
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+    float **x;
+    int N, i, j, c1 = 0, c2 = 0;
+
+    printf("Digite a quantidade de linhas e colunas de uma matriz:\n");
+    scanf("%d", &N);
+
+    x = (float**) malloc (sizeof(float) * N);
+
+    for(i = 0; i < N; i++){
+        x[i] = (float*) malloc (sizeof(float) * N);
+        c1++;
+        for(j = 0; j < N; j++){
+            printf("Digite um valor para a linha %d e coluna %d:\n", i, j);
+            scanf("%f", &x[i][j]);
+            c2++;
+        }
+    }
+
+    printf("\n");
+ 
+    for (i = 0; i < N; i++){
+        for (j = 0; j < N; j++){
+            printf("%g", x[i][j]); 
+        }
+    }
+    
+    printf("\n");
+
+    printf("Quantidade de linhas: %d\nQuantidade de colunas: %d\n", c1, c2); 
+
+
+    system("pause");
+    return 0;
+}
+
+16
+#include <stdio.h>
+
+int main() {
+    int **p, **t, i, j, n, m;
+    printf("Digite o tamanho da matriz: ");
+    scanf("%d %d", &n, &m);
+    p = (int **) malloc(n * sizeof(int *));
+    for (i = 0; i < n; i++) {
+        p[i] = (int *) malloc(m * sizeof(int));
+    }
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < m; j++) {
+            printf("Digite um número: ");
+            scanf("%d", &p[i][j]);
+        }
+    }
+    t = (int **) malloc(m * sizeof(int *));
+    for (i = 0; i < m; i++) {
+        t[i] = (int *) malloc(n * sizeof(int));
+    }
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < m; j++) {
+            t[j][i] = p[i][j];
+        }
+    }
+    printf("Matriz original:\n");
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < m; j++) {
+            printf("%d ", p[i][j]);
+        }
+        printf("\n");
+    }
+
+18) 
+
+20)
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+{
+    c *x; 
+    int N, i, j; 
+    float **mat, coorX, coorY;  
+
+    printf("Digite a quantidade de cidades que voce deseja calcular a(s) distancia(s)?\n"); 
+    scanf("%d", &N); 
+
+    x = (c*) malloc (sizeof(c) * N); 
+
+    for(i = 0; i < N; i++){
+        fflush(stdin);
+        printf("Apresente o nome da cidade %d:\n", i + 1);
+        scanf(" %[^\n]s", &x[i].nome);
+        fflush(stdin);
+        printf("Apresente a posicao dessa cidade: "); 
+        fflush(stdin); 
+        scanf("%f", &x[i].posicao); 
+        fflush(stdin); 
+        printf("\n"); 
+    }
+
+    mat = (float**) malloc (sizeof(float) * N);
+    
+    for(i = 0; i < N; i++) {
+        mat[i]= (float*) malloc (sizeof(float) * N); 
+        for (j = 0; j < N; j++) {
+            mat[i][j] = x[i + 1].posicao - x[i].posicao; 
+            printf("Distancia entre cidades %d e %d: %f\n", i, j, mat[i][j]);
+        }
+    printf("\n"); 
+    }
+
+    for(i = 0; i < N; i++){
+        for(j = 0; j < N; j++){
+            printf("%f ", mat[i][j]);
+        }
+    printf("\n"); 
+    }
+
+    printf("Digite uma coordenada X:\n"); 
+    scanf("%f",&coorX);
+    printf("Digite uma coordenada Y:\n"); 
+    scanf("%f", &coorY);
+    
+    for(i = 0; i < N; i++){
+        if (coorX == x[i].posicao && coorY == x[i].posicao){
+            for(i = 0; i < N; i++){
+                for (j = 0; j < N; j++){
+                    printf("A distancia entre essas duas cidades eh: %f", mat[i][j]); 
+                }
+            }
+        }
+    }
+
+    system("pause");
+    return 0;  }
